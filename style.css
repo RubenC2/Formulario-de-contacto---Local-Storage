@@ -1,0 +1,137 @@
+
+*{
+    box-sizing: border-box;
+}
+body, html {
+    margin: 0;
+    width: 100%;
+    height: 100%;
+
+    font-size: 0.9em;
+    font-family: Arial, sans-serif;
+}
+
+.box {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.9em;
+    color: rgb(50, 54, 62);
+    width: 200px;
+    max-width: 200px;
+    border-radius: 5px;
+    flex-direction: column; /* Apila los elementos verticalmente */
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 10px;
+    border: 1px solid rgb(164, 185, 232);
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
+    position: relative; /* Posiciona el ícono relativo a la caja */
+}
+
+.box1 {
+    background-color: rgb(237, 244, 248);
+}
+
+.box2 {
+    background-color: rgb(170, 233, 170);
+}
+
+.box3 {
+    background-color: rgb(167, 167, 230);
+}
+
+.delete-icon {
+    color: rgb(50, 54, 62); /* Color del ícono */
+    cursor: pointer;
+    font-size: 1.2em; /* Tamaño del ícono */
+    margin-left: auto; /* Empuja el ícono a la derecha */
+    padding: 0; /* Elimina padding innecesario */
+    display: block;
+    align-self: flex-end; /* Alinea el ícono al final de la caja */
+}
+
+.delete-icon:hover {
+    color: red; /* Cambia el color del ícono al pasar el ratón */
+}
+
+/* Estilos para la primera parte (formulario) */
+.form-container {
+    background-color: #f4f4f4;
+    padding: 20px;
+    max-width: 500px;
+    margin: 20px auto;
+    border-radius: 5px;
+    border:1px solid #CCCCCC;
+    box-shadow: 0 4px 5px rgba(38, 39, 40, 0.1);
+}
+
+.form-container h2 {
+    margin: 0px;
+}
+
+.form-container label {
+    display: block;
+    margin-top: 15px;
+}
+
+.form-container input,
+.form-container textarea {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+
+    outline: none;
+}
+.form-container input::placeholder, textarea::placeholder {
+    color: rgb(199, 199, 199);
+}
+
+.form-container .submit {
+    display: block;
+    margin-top: 15px;
+}
+.form-container button {
+    background-color: #007BFF;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.form-container button:hover {
+    background-color: #0056b3;
+}
+
+/* Estilos para la segunda parte (capas dinámicas) */
+.container {
+    gap: 10px;
+    display: flex;
+    max-width: 500px;
+    margin: 20px auto;
+
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-content: flex-start;
+    flex-direction: row;
+    align-items: flex-start;
+}
+
+/* Estilo para el botón "Eliminar todos" */
+.btn_borrarTodos {
+    background-color: #548824;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 20px auto;
+    display: none;
+}
+
+.btn_borrarTodos:hover {
+    background-color: #6ad132;
+}
