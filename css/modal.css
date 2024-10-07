@@ -1,0 +1,82 @@
+
+/* Capa de fondo */
+.overlay {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 999; 
+    display: none;
+    position: fixed;
+
+    background-color: rgba(0, 0, 0, 0.5); 
+}
+
+/* Ventana modal centrada */
+.modal {
+    top: 50%;
+    left: 50%;
+    display: none; 
+    z-index: 1000;
+    position: fixed;
+    
+    width:60%;
+    padding: 20px;
+    min-width: 300px;
+    text-align: left;
+
+    border-radius: 8px;
+    background-color: white;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    transform: translate(-50%, -50%);
+}
+
+/* Estilos para la primera parte (formulario) */
+.form-container-modal {
+    padding: 20px;
+    max-width: 500px;
+    margin: 5px auto;
+    border-radius: 5px;
+    border:1px solid #CCCCCC;
+    background-color: #faedd3;
+    box-shadow: 0 4px 5px rgba(38, 39, 40, 0.1);
+}
+
+.form-container-modal h2 {
+    margin: 0px;
+}
+
+.form-container-modal label {
+    display: block;
+    margin-top: 15px;
+}
+
+.form-container-modal input,
+.form-container-modal textarea {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+
+    outline: none;
+}
+.form-container-modal input::placeholder, textarea::placeholder {
+    color: rgb(199, 199, 199);
+}
+
+.form-container-modal .submit {
+    display: block;
+    margin-top: 15px;
+}
+.form-container-modal button {
+    background-color: #ffb300;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.form-container-modal button:hover {
+    background-color: #ca9314;
+}

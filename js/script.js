@@ -11,50 +11,25 @@
 //-editar el objeto
 //- guardar objeto en el array
 //-subir array a LocalStorage
+
 window.addEventListener('load', function() {
     
-    // inicializamos el localStorage 'user' a vacio
-    /* localStorage.setItem(
-        "user",
-        JSON.stringify([])
-    ); */
-    // Si existe el id 'user' del localStorage
-    if(localStorage.getItem("user") != null){
+    let user = leer_localStorage("user");
 
-        // obtenemos el valor actual del localStorage 'user'
-        let user = leer_localStorage("user");
-
-        // obtenemos el contenedor HTML y lo vaciamos
-        let container = document.querySelector(".container");
-        container.innerHTML = "";
-
-        // pintamos el HTML de las fichas dentro de su contenedor
-        container.innerHTML += pintarHTML_ficha(user);
-
-        // recorremos 'user' al ser un array
-        /* for (let i = 0; i < user.length; i++) {
-
-            let fichaID = user[i].id; // identificador único
-
-            // creamos el HTML de la ficha
-            container.innerHTML += `
-            <div class="box box1" id="${fichaID}">
-                <div>Usuario: ${user[i].nombre}</div>
-                <div>Email: ${user[i].email}</div>
-                <div>Comentario: ${user[i].comentario}</div>
-                <div>Imagen: ${user[i].imagen}</div>
-                <div onclick="eliminarFicha('${fichaID}')" style="width:100%; text-align:right;">
-                    <i class="fas fa-trash delete-icon" title="Eliminar ficha de ${user[i].nombre}"></i>
-                </div>
-            </div>
-            `;
-        } */
-        // definimos el boton 'btn_borrarTodos'
-        const btn_borrarTodos = document.getElementById('btn_borrarTodos');
-
-        // mostramos el boton 'btn_borrarTodos'
-        btn_borrarTodos.setAttribute('style', 'display: none');
+    if(user == null){
+        localStorage.removeItem("user");
+        // inicializamos el localStorage 'user' a vacio
+        localStorage.setItem(
+            "user",
+            JSON.stringify([])
+        );
     }
+    
+    // definimos el boton 'btn_borrarTodos'
+    const btn_borrarTodos = document.getElementById('btn_borrarTodos');
+
+    // mostramos el boton 'btn_borrarTodos'
+    btn_borrarTodos.setAttribute('style', 'display: none');
 
     // Evento para eliminar todas las capas
     btn_borrarTodos.addEventListener('click', (event) => {
@@ -72,7 +47,7 @@ function leer_localStorage(identificador){
     return JSON.parse(datos);
 }
 
-document.querySelector("form").addEventListener("submit", function (event) {
+document.querySelector("#form_main").addEventListener("submit", function (event) {
     event.preventDefault(); // paraliza envío formulario
 
     const nombre = event.target.nombre.value;
@@ -82,17 +57,18 @@ document.querySelector("form").addEventListener("submit", function (event) {
 
     const emailPattern = /^[a-zA-Z0-9]{2,}@[a-zA-Z]{3,}\.(?:[a-zA-Z]{2,4})$/;
 
-    // Comprobar si el correo electrónico cumple con el patrón
+    // Si el correo electrónico cumple con el patrón
     if (emailPattern.test(email)) {
         console.log("Correo electrónico válido.");
 
-        let esDuplicado = leer_localStorage("user");
+        /* let esDuplicado = leer_localStorage("user");
         if(esDuplicado != null){
             console.log("esDuplicado=", esDuplicado);
             //checkEmailDuplicado(esDuplicado)
-        }
+        } */
 
         guardarDatos(event.target.elements);
+        this.reset();
 
         let container = document.querySelector(".container");
         container.innerHTML = "";
@@ -100,24 +76,9 @@ document.querySelector("form").addEventListener("submit", function (event) {
         let user = leer_localStorage("user");
 
         container.innerHTML += pintarHTML_ficha(user);
-
-        /* for (let i = 0; i < user.length; i++) {
-
-            let fichaID = user[i].id;
-
-            container.innerHTML += `
-            <div class="box box1" id="${fichaID}">
-                <div>Usuario: ${user[i].nombre}</div>
-                <div>Email: ${user[i].email}</div>
-                <div>Comentario: ${user[i].comentario}</div>
-                <div>Imagen: ${user[i].imagen}</div>
-                <div onclick="eliminarFicha('${fichaID}')" style="width:100%; text-align:right;">
-                    <i class="fas fa-trash delete-icon" title="Eliminar ficha de ${user[i].nombre}"></i>
-                </div>
-            </div>
-            `;
-        } */
         btn_borrarTodos.setAttribute('style', 'display: block');
+
+    // Si No lo cumple
     } else {
         console.log("Correo electrónico no válido.");
         return false;
@@ -126,24 +87,12 @@ document.querySelector("form").addEventListener("submit", function (event) {
 
 function guardarDatos(datos) {
 
-    // vacio el array arr_valores
+    // declaramos e inicializamos el array arr_valores
     let arr_valores = [];
-    let user;
-    // Si existe el id 'user' del localStorage
-    if(localStorage.getItem("user") != null){
-        
-        // obtenemos el valor actual del localStorage 'user'
-        user = leer_localStorage("user");
+    let user = leer_localStorage("user");
 
-        // momento crucial 1
-        // el valor de 'user' llega como un array
-        // Creamos una copia superficial de los valores 'user'
-        // con el operador de propagación y los asignamos al array arr_valores
-        // Si hacemos un arr_valores.push(user) lo estamos haciendo mal
-        // porque creamos un array de arrays
-        //arr_valores = user;
-        //console.log("1. arr_valores", arr_valores);
-    }
+    // Si existe el id 'user' del localStorage
+    if(localStorage.getItem("user") != null){}
     
     // obtengo los datos del formulario 
     // y los inserto en el array
@@ -153,14 +102,13 @@ function guardarDatos(datos) {
         nombre: datos.nombre.value,
         email: datos.email.value,
         comentario: datos.comentario.value,
-        imagen: datos.imagen.value,
+        imagen: datos.imagen.value
     }
-    // momento crucial 2
-    // inserto el objeto 'nuevoUser' dentro del array 'arr_valores'
-    user.push(nuevoUser);
-    //console.log("2. arr_valores", arr_valores);
 
-    // guardamos los valores del array 'arr_valores' en el localStorage 'user'
+    // inserto el objeto 'nuevoUser' dentro del array 'user'
+    user.push(nuevoUser);
+
+    // guardamos los valores del array 'user' en el localStorage 'user'
     localStorage.setItem(
         "user",
         JSON.stringify(user)
@@ -178,12 +126,14 @@ function pintarHTML_ficha(arr){
 
         cadena += `
         <div class="box box1" id="${fichaID}">
-            <div><strong>Usuario:</strong> ${arr[i].nombre}</div>
-            <div><strong>Email:</strong> ${arr[i].email}</div>
-            <div><strong>Comentario:</strong> ${arr[i].comentario}</div>
-            <div><strong>Imagen:</strong> ${arr[i].imagen}</div>
-            <div onclick="eliminarFicha('${fichaID}')" style="width:100%; text-align:right;">
-                <i class="fas fa-trash delete-icon" title="Eliminar ficha de ${arr[i].nombre}"></i>
+            <div><strong>Usuario:</strong> <label>${arr[i].nombre}</label></div>
+            <div><strong>Email:</strong> <label>${arr[i].email}</label></div>
+            <div><strong>Comentario:</strong> <label>${arr[i].comentario}</label></div>
+            <div><strong>Imagen:</strong> <label>${arr[i].imagen}</label></div>
+
+            <div class="icon-container">
+                <i onclick="editarFicha('${fichaID}')" class="fas fa-edit edit-icon" title="Editar ficha de ${arr[i].nombre}"></i>
+                <i onclick="eliminarFicha('${fichaID}')"class="fas fa-trash delete-icon" title="Eliminar ficha de ${arr[i].nombre}"></i>
             </div>
         </div>
         `;
@@ -191,10 +141,18 @@ function pintarHTML_ficha(arr){
     return cadena;
 }
 
+function editarFicha(ficha_id){
+    let fichaID = document.querySelector("#" + ficha_id);
+    //fichaID.setAttribute('style', 'border: 1px solid orange; background-color: #FBE7B7');
+
+    // Llamamos a la funcion situada en modal.js
+    abrirModoEdicion(ficha_id);
+}
+
 function eliminarFicha(ficha_id) {
 
     // eliminamos la ficha del HTML
-    let fichaID = document.querySelector("#" + ficha_id)
+    let fichaID = document.querySelector("#" + ficha_id);
     fichaID.remove();
 
     // obtenemos el valor actual del localStorage 'user'
@@ -218,7 +176,24 @@ function eliminarFicha(ficha_id) {
     }
 }
 
-// hacer filter
+function modificarPorId(arr, f_id) {
+    // Recorremos todos los elementos del array y 
+    // devolvemos el índice del primer elemento que cumpla con la condición especificada
+    // de hecho, solo puede encontrar un identificador unico en todo el array
+    const indice = arr.findIndex(f => f.id === f_id);
+    
+    // Si el objeto existe, modicarlo
+    if (indice !== -1) {
+        // índice_inicio, número_elementos_a_eliminar
+        //arr.splice(indice, 1); // Elimina el objeto en la posición encontrada
+        arr[indice].nombre = mMdl.inputs["nombre"].value;
+        arr[indice].email = mMdl.inputs["email"].value;
+        arr[indice].comentario = mMdl.inputs["comentario"].value;
+        arr[indice].imagen = mMdl.inputs["imagen"].value;
+    }
+    return arr; // devolvemos el array
+}
+
 function eliminarPorId(arr, f_id) {
     // Recorremos todos los elementos del array y 
     // devolvemos el índice del primer elemento que cumpla con la condición especificada

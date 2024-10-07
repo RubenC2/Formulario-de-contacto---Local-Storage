@@ -12,46 +12,75 @@ Crea botón para borrar un contacto en concreto de Local Storage.
 NOTA IMPORTANTE: La estructura de datos de usuarios consistirá en un array 
 de objetos [{..},{..},{..}...{..}] almacenado en Local Storage
  -->
-<!DOCTYPE html>
-<html lang="es">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formulario localStorage</title>
-
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-</head>
-
-<body>
-
-    <div class="form-container">
-        <h2>Formulario</h2>
-        <form>
-            <label for="nombre">Nombre:</label>
-            <input type="text" id="nombre" name="nombre" placeholder="Introduce el nombre">
-
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" placeholder="Introduce el email">
-
-            <label for="comentario">Comentario:</label>
-            <textarea id="comentario" name="comentario" rows="4" placeholder="Introduce un comentario"></textarea>
-
-            <label for="imagen">Imagen:</label>
-            <input type="text" id="imagen" name="imagen" placeholder="Introduce una imagen">
-
-            <div class="submit">
-                <button type="submit">Enviar</button>
-            </div>
-        </form>
-    </div>
-
-    <div class="container"></div>
-
-    <button class="btn_borrarTodos" id="btn_borrarTodos">Eliminar todo</button>
-
-    <script src="script.js"></script>
-</body>
-
-</html>
+ <!DOCTYPE html>
+ <html lang="es">
+ 
+ <head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Formulario localStorage</title>
+ 
+     <link rel="stylesheet" href="./css/style.css">
+     <link rel="stylesheet" href="./css/modal.css">
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+ </head>
+ 
+ <body>
+ 
+     <div id="boxMain">
+         <div class="form-container">
+             <h2>Formulario</h2>
+             <form id="form_main">
+                 <label for="nombre">Nombre:</label>
+                 <input type="text" id="nombre" name="nombre" placeholder="Introduce el nombre">
+ 
+                 <label for="email">Email:</label>
+                 <input type="email" id="email" name="email" placeholder="Introduce el email">
+ 
+                 <label for="comentario">Comentario:</label>
+                 <textarea id="comentario" name="comentario" rows="4" placeholder="Introduce un comentario"></textarea>
+ 
+                 <label for="imagen">Imagen:</label>
+                 <input type="text" id="imagen" name="imagen" placeholder="Introduce una imagen">
+ 
+                 <div class="submit">
+                     <button id="btn_enviar">Enviar</button>
+                 </div>
+             </form>
+         </div>
+     </div>
+ 
+     <div class="container"></div>
+ 
+     <button class="btn_borrarTodos" id="btn_borrarTodos">Eliminar todo</button>
+ 
+     <div id="boxEdicion">
+         <div id="overlay" class="overlay"></div>
+         <div id="modal" class="modal">
+             <div class="form-container-modal">
+                 <label for="nombre">Nombre:</label>
+                 <input type="text" id="nombre" name="nombre" placeholder="Introduce el nombre">
+     
+                 <label for="email">Email:</label>
+                 <input type="email" id="email" name="email" placeholder="Introduce el email">
+     
+                 <label for="comentario">Comentario:</label>
+                 <textarea id="comentario" name="comentario" rows="3" placeholder="Introduce un comentario"></textarea>
+     
+                 <label for="imagen">Imagen:</label>
+                 <input type="text" id="imagen" name="imagen" placeholder="Introduce una imagen">
+     
+                 <div class="submit">
+                     <button class="modificar">Modificar</button>
+                     <button class="cancelar">Cancelar</button>
+                 </div>
+ 
+                 <input type="hidden" id="idFicha" name="idFicha" value="">
+             </div>
+         </div>
+     </div>
+ 
+     <script src="./js/script.js"></script>
+     <script src="./js/modal.js"></script>
+ </body>
+ </html>
